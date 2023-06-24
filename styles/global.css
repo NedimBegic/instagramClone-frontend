@@ -1,0 +1,14 @@
+body {
+  margin: 0;
+  background-color: #ffff;
+  overflow-x: hidden;
+}
+
+html * {
+  scroll-behavior: smooth !important;
+  font-family: "Roboto", sans-serif;
+}
+
+p {
+  font-family: "Montserrat", sans-serif;
+}

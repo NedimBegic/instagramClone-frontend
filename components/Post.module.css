@@ -1,0 +1,74 @@
+.li {
+  width: 100%;
+  max-width: 40em;
+  list-style: none;
+}
+
+.li > img {
+  width: 100%;
+  height: 20em;
+}
+
+/* Creator of the post */
+.creator {
+  display: flex;
+  height: 2em;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.4em;
+}
+.creator > img {
+  width: 2em;
+  border-radius: 50%;
+}
+
+.creator span {
+  color: gray;
+}
+
+/* Bellow post */
+.bellow {
+  width: 100%;
+  height: 1.4em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.5em;
+}
+
+.bellow div {
+  width: 40%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 0.5em;
+  gap: 1.3em;
+}
+
+.bellow:last-child {
+  margin-right: 4em;
+}
+
+/* liked */
+.liked {
+  width: auto !important;
+  font-weight: 300;
+  padding: 0.8em;
+  margin-top: -0.2em;
+  margin-bottom: -0.2em;
+}
+
+/* comments */
+.comments {
+  padding-left: 0.8em;
+  color: gray;
+}
+
+.comments:hover,
+.liked:hover,
+.bellow div *:hover,
+.li h5:hover,
+.li img:hover,
+.flag:hover {
+  cursor: pointer;
+}
