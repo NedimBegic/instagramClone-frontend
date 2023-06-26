@@ -1,5 +1,8 @@
-import styleLogin from "./Login.module.css";
-import { useRef, useState } from "react";
+import styleLogin from "../components/Login.module.css";
+import { useRef, useState, useEffect, useContext } from "react";
+import { useRouter } from "next/router";
+import Cookies from "js-cookie";
+import Context from "@/store/createContext";
 
 const Login = () => {
   // state for error
@@ -7,6 +10,15 @@ const Login = () => {
   // ref for inputs
   const emailRef = useRef();
   const passRef = useRef();
+  const { token } = useContext(Context);
+  const router = useRouter();
+
+  // redirect to homepage if token exist
+  useEffect(() => {
+    if (token) {
+      router.push("/");
+    }
+  }, []);
 
   const submitLogin = async (e) => {
     e.preventDefault();
@@ -25,11 +37,13 @@ const Login = () => {
     });
     // Response data
     const responseData = await response.json();
-    console.log(responseData);
     /* Check if there is an error */
     if (responseData.message) {
       setErrMessage(responseData.message);
     }
+
+    Cookies.set("token", `${responseData.token}`, { expires: 7 });
+    router.push("/");
   };
 
   return (
