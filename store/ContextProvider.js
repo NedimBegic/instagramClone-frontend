@@ -4,7 +4,6 @@ import Cookies from "js-cookie";
 
 const ContextProvider = (props) => {
   const token = Cookies.get("token");
-  const [isAuth, setIsAuth] = useState(false);
 
   const context = {
     token: token,

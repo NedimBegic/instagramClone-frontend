@@ -8,7 +8,6 @@ const Feed = () => {
     const fetchData = async () => {
       const res = await fetch(`${process.env.NEXT_PUBLIC_SITE}/post`);
       const data = await res.json();
-      console.log(data.data);
       setFeed(data.data);
     };
     fetchData();

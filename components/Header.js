@@ -7,11 +7,21 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import styleHeader from "./Header.module.css";
+import Cookies from "js-cookie";
+import { useRouter } from "next/router";
+
 const Header = () => {
   const [showDiv, setShowDiv] = useState(false);
+  const router = useRouter();
 
   const onShowDivHandler = () => {
     setShowDiv((prevState) => !prevState);
+  };
+
+  const onLogOut = () => {
+    Cookies.remove("token");
+    router.push("/login");
+    setShowDiv(false);
   };
 
   return (
@@ -24,7 +34,7 @@ const Header = () => {
           icon={faChevronDown}
         />
         {showDiv && (
-          <div className={styleHeader.showDiv}>
+          <div onClick={onLogOut} className={styleHeader.showDiv}>
             <p>Log out</p>
             <FontAwesomeIcon icon={faCircleUser} />
           </div>

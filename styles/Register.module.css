@@ -12,16 +12,15 @@
   justify-content: space-evenly;
 }
 
-.div h2 {
-  font-family: "Dancing Script", cursive;
-  font-size: 3em;
-}
-
 .div form {
   display: flex;
   flex-direction: column;
   gap: 1em;
   align-items: center;
+}
+.div h2 {
+  font-family: "Dancing Script", cursive;
+  font-size: 3em;
 }
 
 .div form input {
@@ -37,7 +36,10 @@
 .div form p {
   font-size: 0.8em;
   color: red;
-  height: 2em;
+  width: 90%;
+  line-height: 1.4em;
+  margin-bottom: 1em;
+  text-align: center;
 }
 
 .div form button {
@@ -46,7 +48,6 @@
   border: none;
   width: 19.3em;
   height: 2.5em;
-  margin-top: -0.5em;
   border-radius: 10px;
 }
 

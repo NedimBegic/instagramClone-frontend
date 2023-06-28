@@ -13,6 +13,8 @@ const Login = () => {
   const { token } = useContext(Context);
   const router = useRouter();
 
+  const { hf, setHf } = Context;
+
   // redirect to homepage if token exist
   useEffect(() => {
     if (token) {
@@ -22,10 +24,12 @@ const Login = () => {
 
   const submitLogin = async (e) => {
     e.preventDefault();
+
     const data = {
       email: emailRef.current.value,
       password: passRef.current.value,
     };
+
     // send data
     const response = await fetch(process.env.NEXT_PUBLIC_SITE + "/auth/login", {
       method: "POST",
@@ -38,12 +42,19 @@ const Login = () => {
     // Response data
     const responseData = await response.json();
     /* Check if there is an error */
+
     if (responseData.message) {
       setErrMessage(responseData.message);
+      return;
     }
 
     Cookies.set("token", `${responseData.token}`, { expires: 7 });
+    Context.userPhoto = responseData.user.photo;
     router.push("/");
+  };
+
+  const toRegisterHandler = () => {
+    router.push("register");
   };
 
   return (
@@ -62,7 +73,7 @@ const Login = () => {
       </form>
       <div>
         <p>Don't have an accaunt?</p>
-        <button>Sing up</button>
+        <button onClick={toRegisterHandler}>Sing up</button>
       </div>
     </div>
   );
