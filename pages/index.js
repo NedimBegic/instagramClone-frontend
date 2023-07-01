@@ -8,7 +8,6 @@ import Footer from "@/components/Footer";
 const Homepage = (props) => {
   const { token } = useContext(Context);
   const router = useRouter();
-
   // if token don't exist redirect to login
   useEffect(() => {
     if (!token) {

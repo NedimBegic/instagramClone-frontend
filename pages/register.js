@@ -52,7 +52,8 @@ const Register = () => {
     }
 
     Cookies.set("token", `${responseData.token}`, { expires: 7 });
-    Context.userPhoto = responseData.user.photo;
+    Cookies.set("photo", `${responseData.user.photo}`, { expires: 7 });
+    Cookies.set("nickName", `${responseData.user.nickName}`, { expires: 7 });
     router.push("/");
   };
 

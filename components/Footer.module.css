@@ -10,3 +10,9 @@
   align-items: center;
   justify-content: space-evenly;
 }
+
+.div img {
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+}

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import stylePost from "./Post.module.css";
 import {
   faHeart,
@@ -6,11 +6,37 @@ import {
   faPaperPlane,
   faFlag,
 } from "@fortawesome/free-regular-svg-icons";
-import { faFlag as flagSolid } from "@fortawesome/free-solid-svg-icons";
-
+import {
+  faFlag as flagSolid,
+  faHeart as heart,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Cookies from "js-cookie";
+import { useRouter } from "next/router";
+
 const Post = (props) => {
   const [saveButton, setSaveButton] = useState(false);
+  const [clickLike, setClickLike] = useState(false);
+  const [likeArray, setLikeArray] = useState(props.post.whoLiked);
+  const router = useRouter();
+  const logedUser = Cookies.get("nickName");
+
+  /* Did the logged user liked the post ( used for initial render to remember the like) */
+  useEffect(() => {
+    if (likeArray.includes(logedUser)) {
+      setClickLike(true);
+    }
+  }, []);
+  /* if clicked like add to array */
+  useEffect(() => {
+    if (clickLike) {
+      setLikeArray((prevState) => [logedUser, ...prevState]);
+    } else {
+      setLikeArray((prevState) => prevState.filter((e) => e !== logedUser));
+    }
+  }, [clickLike]);
+
+  /* Calculating the date of post */
   const dateOFPost = (numDate) => {
     // date of creation in miliseconds
     let dateOfCreation = numDate;
@@ -32,20 +58,40 @@ const Post = (props) => {
     setSaveButton((prevState) => !prevState);
   };
 
-  // Liked by
   let liked =
-    props.post.whoLiked.length == 0
+    likeArray.length == 0
       ? "No likes"
-      : props.post.whoLiked.length == 1
-      ? props.post.whiLiked[0] + " liked"
-      : `Liked by ${props.post.whoLiked[0]} and ${
-          props.post.whoLiked.length - 1
-        } others`;
+      : likeArray.length == 1
+      ? likeArray[0] + " liked this"
+      : likeArray[0] + ` and ${likeArray.length - 1} more likes this`;
+
   // Comments
   let comments =
     props.post.comment.length == 0
       ? `Write first comment`
       : `View all ${props.post.comment.length} comments`;
+
+  // Likes
+  const postLike = async (e) => {
+    // send like
+    const response = await fetch(
+      process.env.NEXT_PUBLIC_SITE + `/post/${props.post._id}/like`,
+      {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${Cookies.get("token")}`,
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    setClickLike((prevState) => !prevState);
+  };
+
+  /* Open the comments */
+  const goToComments = () => {
+    router.push(`/post/${props.post.id}/comments`);
+  };
 
   return (
     <li className={stylePost.li} key={props.post.id}>
@@ -64,8 +110,16 @@ const Post = (props) => {
       <span>{props.post.description}</span>
       <div className={stylePost.bellow}>
         <div>
-          <FontAwesomeIcon icon={faHeart} />
-          <FontAwesomeIcon icon={faComment} />
+          {clickLike ? (
+            <FontAwesomeIcon
+              onClick={postLike}
+              style={{ color: "red" }}
+              icon={heart}
+            />
+          ) : (
+            <FontAwesomeIcon onClick={postLike} icon={faHeart} />
+          )}
+          <FontAwesomeIcon onClick={goToComments} icon={faComment} />
           <FontAwesomeIcon icon={faPaperPlane} />
         </div>
         {!saveButton ? (
