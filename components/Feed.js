@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import styleFeed from "./Feed.module.css";
 import Post from "./Post";
+import Comments from "@/components/Comments";
+
 const Feed = () => {
   const [feed, setFeed] = useState([]);
+  const [comments, setComments] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -13,12 +16,17 @@ const Feed = () => {
     fetchData();
   }, []);
 
+  const openComments = () => {
+    setComments((prevState) => !prevState);
+  };
+
   return (
     <div>
       <main>
+        {comments && <Comments toggleComments={openComments} />}
         <ul className={styleFeed.ul}>
           {feed.map((post) => (
-            <Post key={post.id} post={post} />
+            <Post openComments={openComments} key={post.id} post={post} />
           ))}
         </ul>
       </main>

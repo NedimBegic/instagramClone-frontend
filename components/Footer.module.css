@@ -9,6 +9,7 @@
   font-size: 1.5em;
   align-items: center;
   justify-content: space-evenly;
+  z-index: 1;
 }
 
 .div img {

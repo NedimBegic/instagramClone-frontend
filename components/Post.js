@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import stylePost from "./Post.module.css";
 import {
   faHeart,
@@ -13,13 +13,16 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
+import Context from "@/store/createContext";
 
 const Post = (props) => {
   const [saveButton, setSaveButton] = useState(false);
   const [clickLike, setClickLike] = useState(false);
   const [likeArray, setLikeArray] = useState(props.post.whoLiked);
+  const [numOfComments, setNumOfComments] = useState(props.post.comment.length);
   const router = useRouter();
   const logedUser = Cookies.get("nickName");
+  const { changePostId } = useContext(Context);
 
   /* Did the logged user liked the post ( used for initial render to remember the like) */
   useEffect(() => {
@@ -69,7 +72,7 @@ const Post = (props) => {
   let comments =
     props.post.comment.length == 0
       ? `Write first comment`
-      : `View all ${props.post.comment.length} comments`;
+      : `View all ${numOfComments} comments`;
 
   // Likes
   const postLike = async (e) => {
@@ -90,7 +93,8 @@ const Post = (props) => {
 
   /* Open the comments */
   const goToComments = () => {
-    router.push(`/post/${props.post.id}/comments`);
+    changePostId(props.post.id);
+    props.openComments();
   };
 
   return (
@@ -105,6 +109,7 @@ const Post = (props) => {
         <span>{"• " + dateOFPost(props.post.createdAt)}</span>
       </div>
       <img
+        onClick={goToComments}
         src={process.env.NEXT_PUBLIC_SITE + "/uploads/" + props.post.photo}
       />
       <span>{props.post.description}</span>
@@ -137,7 +142,9 @@ const Post = (props) => {
         )}
       </div>
       <p className={stylePost.liked}>{liked}</p>
-      <span className={stylePost.comments}>{comments}</span>
+      <span onClick={goToComments} className={stylePost.comments}>
+        {comments}
+      </span>
     </li>
   );
 };
