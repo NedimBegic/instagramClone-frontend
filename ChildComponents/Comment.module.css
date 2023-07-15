@@ -1,0 +1,30 @@
+.ul {
+  width: 100%;
+  height: auto;
+  overflow-y: scroll;
+}
+
+.ul li {
+  list-style: none;
+  margin-left: -1.5em;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid grey;
+  margin-right: 3em;
+}
+
+.ul li p {
+  margin-left: 1em;
+}
+
+.ul li span {
+  color: gray;
+  font-size: 0.8em;
+  padding-left: 1em;
+  margin-bottom: 4em;
+}
+
+.loading {
+  text-align: center;
+  margin-left: -4em;
+}

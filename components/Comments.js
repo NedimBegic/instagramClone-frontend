@@ -3,6 +3,7 @@ import { useContext, useState, useEffect, useRef } from "react";
 import Context from "@/store/createContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import Comment from "@/ChildComponents/Comment";
 import Cookies from "js-cookie";
 
 /* Backkdrop component */
@@ -14,20 +15,8 @@ const Backdrop = () => {
 const Content = (props) => {
   const photo = Cookies.get("photo");
   const { postId } = useContext(Context);
-  const [post, setPost] = useState();
   const buttonRef = useRef();
   const inputRef = useRef();
-
-  /* Get the single post  */
-  /*  UNFINISHED !!!!!!!!!!!!!!!!!!!!!!!!! */
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_SITE}/post/${postId}`);
-      const data = await res.json();
-      setPost(data.data);
-    };
-    fetchData();
-  }, []);
 
   /* Put a comment */
   const putComment = (e) => {
@@ -59,6 +48,7 @@ const Content = (props) => {
   const buttonHide = () => {
     buttonRef.current.style.opacity = 0.4;
   };
+
   return (
     <div className={styleComment.content}>
       <div className={styleComment.pic}>picture</div>
@@ -71,6 +61,7 @@ const Content = (props) => {
           />
           <h4>Comments</h4>
         </div>
+        <Comment postId={postId} />
         <section className={styleComment.postComment}>
           <div>
             {" "}
