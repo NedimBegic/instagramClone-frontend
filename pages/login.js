@@ -13,8 +13,6 @@ const Login = () => {
   const { token } = useContext(Context);
   const router = useRouter();
 
-  const { hf, setHf } = Context;
-
   // redirect to homepage if token exist
   useEffect(() => {
     if (token) {

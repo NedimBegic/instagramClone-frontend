@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import styleFeed from "./Feed.module.css";
 import Post from "./Post";
 import Comments from "@/components/Comments";
+import { useRouter } from "next/router";
 
 const Feed = () => {
   const [feed, setFeed] = useState([]);

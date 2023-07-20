@@ -97,15 +97,21 @@ const Post = (props) => {
     props.openComments();
   };
 
+  /* Redirect to a profile */
+  const openUser = () => {
+    router.push(`/${props.post.user.nickName}`);
+  };
+
   return (
     <li className={stylePost.li} key={props.post.id}>
       <div className={stylePost.creator}>
         <img
+          onClick={openUser}
           src={
             process.env.NEXT_PUBLIC_SITE + "/uploads/" + props.post.user.photo
           }
         />
-        <h5>{props.post.user.nickName}</h5>
+        <h5 onClick={openUser}>{props.post.user.nickName}</h5>
         <span>{"• " + dateOFPost(props.post.createdAt)}</span>
       </div>
       <img
