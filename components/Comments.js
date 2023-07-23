@@ -14,10 +14,27 @@ const Backdrop = () => {
 /* Content component */
 const Content = (props) => {
   const photo = Cookies.get("photo");
+  const nickaName = Cookies.get("nickName");
   const { postId } = useContext(Context);
   const buttonRef = useRef();
   const inputRef = useRef();
+  const [post, setPost] = useState([]);
+  const [isComment, setIsComment] = useState("Loading...");
 
+  /* Get the single post  */
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_SITE}/comment/${postId}`
+      );
+      const data = await res.json();
+      setPost(data.data);
+      if (post.length == 0) {
+        setIsComment("No Comments");
+      }
+    };
+    fetchData();
+  }, []);
   /* Put a comment */
   const putComment = (e) => {
     e.preventDefault();
@@ -39,6 +56,15 @@ const Content = (props) => {
       );
     };
     postComment();
+    // make the new comment and push it to old
+    let newComment = {
+      comment: inputRef.current.value,
+      createdAt: new Date(),
+      author: nickaName,
+      id: Math.random(),
+      user: [{ photo: photo }],
+    };
+    setPost((prevState) => [...prevState, newComment]);
     e.target.reset();
   };
   /*  Chaniging opacity of button on input focus */
@@ -61,7 +87,7 @@ const Content = (props) => {
           />
           <h4>Comments</h4>
         </div>
-        <Comment postId={postId} />
+        <Comment postId={postId} post={post} isComment={isComment} />
         <section className={styleComment.postComment}>
           <div>
             {" "}

@@ -2,25 +2,7 @@ import styleComment from "./Comment.module.css";
 import { useState, useEffect } from "react";
 
 const Comment = (props) => {
-  const [post, setPost] = useState([]);
-  const [isComment, setIsComment] = useState("Loading...");
-
-  /* Get the single post  */
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_SITE}/comment/${props.postId}`
-      );
-      const data = await res.json();
-      setPost(data.data);
-      if (post.length == 0) {
-        setIsComment("No comments...");
-      }
-    };
-    fetchData();
-  }, []);
-
-  const loading = <p className={styleComment.loading}>{isComment}</p>;
+  const loading = <p className={styleComment.loading}>{props.isComment}</p>;
 
   /* Creating time for comments when its posted */
   const dateOfPost = (createdAt) => {
@@ -40,10 +22,11 @@ const Comment = (props) => {
       return minutes + "min";
     }
   };
+
   return (
     <ul className={styleComment.ul}>
-      {post.length > 0
-        ? post.map((item) => (
+      {props.post.length > 0
+        ? props.post.reverse().map((item) => (
             <li key={item.id}>
               <div>
                 {
