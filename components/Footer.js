@@ -21,9 +21,13 @@ const Footer = () => {
   const toProfile = () => {
     router.push(`/${logedUser}`);
   };
+
+  const goFeed = () => {
+    router.push("/");
+  };
   return (
     <div className={styleFooter.div}>
-      <FontAwesomeIcon icon={faHouse} />
+      <FontAwesomeIcon onClick={goFeed} icon={faHouse} />
       <FontAwesomeIcon icon={faMagnifyingGlass} />
       <FontAwesomeIcon icon={faCirclePlay} />
       <FontAwesomeIcon icon={faPaperPlane} />

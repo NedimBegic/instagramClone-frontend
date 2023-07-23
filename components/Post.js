@@ -118,7 +118,6 @@ const Post = (props) => {
         onClick={goToComments}
         src={process.env.NEXT_PUBLIC_SITE + "/uploads/" + props.post.photo}
       />
-      <span>{props.post.description}</span>
       <div className={stylePost.bellow}>
         <div>
           {clickLike ? (
@@ -148,9 +147,19 @@ const Post = (props) => {
         )}
       </div>
       <p className={stylePost.liked}>{liked}</p>
-      <span onClick={goToComments} className={stylePost.comments}>
-        {comments}
-      </span>
+      <div className={stylePost.desDiv}>
+        {props.post.description ? (
+          <span className={stylePost.desc}>
+            <b> {props.post.user.nickName}</b>
+            {" " + props.post.description}
+          </span>
+        ) : (
+          ""
+        )}
+        <span onClick={goToComments} className={stylePost.comments}>
+          {comments}
+        </span>
+      </div>
     </li>
   );
 };

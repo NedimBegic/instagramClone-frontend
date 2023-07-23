@@ -6,13 +6,40 @@ import {
   faUserPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import avatar from "../public/avatar.jpg";
+import ErrorHandler from "./ErrorHandler";
+import { useState, useContext } from "react";
+import AddPost from "./AddPost";
+import { useRouter } from "next/router";
+import Context from "@/store/createContext";
 
 const Profile = (props) => {
+  const { posting, togglePost } = useContext(Context);
+  const router = useRouter();
+  const [error, setError] = useState(false);
+  const [message, setMessage] = useState("");
+  const hideError = () => {
+    setError(false);
+  };
+
+  const showError = () => {
+    setMessage("No functionality yet");
+    setError(true);
+  };
+
+  const showPosting = () => {
+    togglePost();
+  };
+
+  const backToFeed = () => {
+    router.push("/");
+  };
   return (
     <article className={styleProfile.all}>
+      {error && <ErrorHandler onHide={hideError} message={message} />}
+      {posting && <AddPost />}
       <div className={styleProfile.head}>
         <FontAwesomeIcon
-          onClick={props.toggleComments}
+          onClick={backToFeed}
           className={styleProfile.arrow}
           icon={faChevronLeft}
         />
@@ -30,6 +57,7 @@ const Profile = (props) => {
             <p>{props.profile.nickName}</p>
             {!props.isYours && (
               <FontAwesomeIcon
+                onClick={showError}
                 className={styleProfile.dots}
                 icon={faEllipsis}
               />
@@ -37,15 +65,19 @@ const Profile = (props) => {
           </div>
           {!props.isYours && (
             <div>
-              <button>Follow</button>
-              <button>Message</button>
-              <FontAwesomeIcon className={styleProfile.add} icon={faUserPlus} />
+              <button onClick={showError}>Follow</button>
+              <button onClick={showError}>Message</button>
+              <FontAwesomeIcon
+                onClick={showError}
+                className={styleProfile.add}
+                icon={faUserPlus}
+              />
             </div>
           )}
           {props.isYours && (
             <div>
               <button>Edit Profile</button>
-              <button>Add Post</button>
+              <button onClick={showPosting}>Add Post</button>
             </div>
           )}
         </div>

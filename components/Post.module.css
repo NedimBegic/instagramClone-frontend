@@ -46,7 +46,7 @@
   display: flex;
   align-items: center;
   padding-left: 0.5em;
-  gap: 1.3em;
+  gap: 1em;
 }
 
 .bellow:last-child {
@@ -62,10 +62,21 @@
   margin-bottom: -0.2em;
 }
 
+.desDiv {
+  display: flex;
+  flex-direction: column;
+}
+
+.desc {
+  padding-left: 0.8em;
+}
+
 /* comments */
 .comments {
   padding-left: 0.8em;
   color: gray;
+  padding-top: 0.5em;
+  top: 2em;
 }
 
 .comments:hover,

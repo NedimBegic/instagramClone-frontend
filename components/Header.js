@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHeart,
@@ -6,14 +6,16 @@ import {
   faCircleUser,
 } from "@fortawesome/free-regular-svg-icons";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import Context from "@/store/createContext";
 import styleHeader from "./Header.module.css";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
+import AddPost from "@/ChildComponents/AddPost";
 
 const Header = () => {
   const [showDiv, setShowDiv] = useState(false);
   const router = useRouter();
-
+  const { posting, togglePost } = useContext(Context);
   const onShowDivHandler = () => {
     setShowDiv((prevState) => !prevState);
   };
@@ -22,6 +24,10 @@ const Header = () => {
     Cookies.remove("token");
     router.push("/login");
     setShowDiv(false);
+  };
+
+  const showPosting = () => {
+    togglePost();
   };
 
   return (
@@ -41,7 +47,7 @@ const Header = () => {
         )}
       </div>
       <div>
-        <FontAwesomeIcon icon={faSquarePlus} />
+        <FontAwesomeIcon onClick={showPosting} icon={faSquarePlus} />
         <FontAwesomeIcon icon={faHeart} />
       </div>
     </div>

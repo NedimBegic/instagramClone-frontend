@@ -1,0 +1,55 @@
+.backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 20;
+  background-color: rgb(0, 0, 0, 0.5);
+}
+
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 23;
+  background-color: #efefef;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 10em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 20px;
+  max-width: 30em;
+  animation-name: entering;
+  animation-duration: 500ms;
+}
+
+@keyframes entering {
+  from {
+    translate: 0 3em;
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.content p {
+  font-size: 1.2em;
+}
+
+.content button {
+  background-color: #4cb5f9;
+  width: 7em;
+  height: 2.5em;
+  border: none;
+  color: white;
+  border-radius: 5px;
+}
+
+.content button:hover {
+  cursor: pointer;
+}
