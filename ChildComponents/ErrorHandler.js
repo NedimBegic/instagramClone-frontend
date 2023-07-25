@@ -1,6 +1,6 @@
 import styleError from "./ErrorHandler.module.css";
 
-const Backdrop = (props) => {
+export const Backdrop = (props) => {
   return <div onClick={props.onHide} className={styleError.backdrop}></div>;
 };
 

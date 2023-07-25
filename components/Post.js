@@ -14,6 +14,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import Context from "@/store/createContext";
+import Liked from "@/ChildComponents/Liked";
 
 const Post = (props) => {
   const [saveButton, setSaveButton] = useState(false);
@@ -23,13 +24,14 @@ const Post = (props) => {
   const router = useRouter();
   const logedUser = Cookies.get("nickName");
   const { changePostId } = useContext(Context);
+  const [openLikes, setOpenLikes] = useState(false);
 
   /* Did the logged user liked the post ( used for initial render to remember the like) */
   useEffect(() => {
     if (likeArray.includes(logedUser)) {
       setClickLike(true);
     }
-  }, []);
+  }, [likeArray]);
   /* if clicked like add to array */
   useEffect(() => {
     if (clickLike) {
@@ -102,8 +104,12 @@ const Post = (props) => {
     router.push(`/${props.post.user.nickName}`);
   };
 
+  const viewLikes = () => {
+    setOpenLikes((prevState) => !prevState);
+  };
   return (
     <li className={stylePost.li} key={props.post.id}>
+      {openLikes && <Liked viewLikes={viewLikes} users={likeArray} />}
       <div className={stylePost.creator}>
         <img
           onClick={openUser}
@@ -146,7 +152,9 @@ const Post = (props) => {
           />
         )}
       </div>
-      <p className={stylePost.liked}>{liked}</p>
+      <p onClick={viewLikes} className={stylePost.liked}>
+        {liked}
+      </p>
       <div className={stylePost.desDiv}>
         {props.post.description ? (
           <span className={stylePost.desc}>

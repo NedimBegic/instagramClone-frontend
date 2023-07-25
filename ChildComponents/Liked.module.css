@@ -1,0 +1,76 @@
+.likes {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 23;
+  background-color: #efefef;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 22em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 20px;
+  max-width: 20em;
+  animation-name: entering;
+  animation-duration: 500ms;
+}
+
+@keyframes entering {
+  from {
+    translate: 0 3em;
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.head {
+  display: flex;
+  flex-direction: row;
+  height: 2.5em;
+  border-bottom: 1px solid grey;
+  width: 100%;
+  align-items: center;
+  justify-content: inherit;
+  position: relative;
+}
+
+.arrow {
+  font-size: 1.4em;
+  padding-left: 1em;
+  position: absolute;
+  left: 1em;
+}
+.head h4 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.likes ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0;
+  width: 100%;
+  padding-bottom: 4em;
+}
+
+.likes ul li {
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.likes ul li button {
+  background-color: #4cb5f9;
+  color: #efefef;
+  border: none;
+  border-radius: 10px;
+  width: 7em;
+  height: 3em;
+}
