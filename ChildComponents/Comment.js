@@ -1,7 +1,9 @@
 import styleComment from "./Comment.module.css";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 
 const Comment = (props) => {
+  const router = useRouter();
   const loading = <p className={styleComment.loading}>{props.isComment}</p>;
 
   /* Creating time for comments when its posted */
@@ -23,6 +25,9 @@ const Comment = (props) => {
     }
   };
 
+  const visitProfile = (author) => {
+    router.push(`/${author}`);
+  };
   return (
     <ul className={styleComment.ul}>
       {props.post.length > 0
@@ -31,6 +36,7 @@ const Comment = (props) => {
               <div>
                 {
                   <img
+                    onClick={visitProfile.bind(null, item.author)}
                     src={
                       process.env.NEXT_PUBLIC_SITE +
                       "/uploads/" +

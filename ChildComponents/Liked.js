@@ -2,13 +2,12 @@ import styleLiked from "./Liked.module.css";
 import { Backdrop } from "./ErrorHandler";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import Link from "next/link";
 
 const Liked = (props) => {
   const [user, setUser] = useState(props.users);
-  useEffect(() => {
-    setUser(props.users);
-  }, [user]);
+
   return (
     <div>
       <Backdrop onHide={props.viewLikes} />
@@ -24,9 +23,11 @@ const Liked = (props) => {
         <ul>
           {user.length > 0 ? (
             user.map((item) => (
-              <li key={item}>
+              <li onClick={visitProfile} key={item}>
                 <p>{item}</p>
-                <button>Visit profile</button>
+                <Link className={styleLiked.button} href={`/${item}`}>
+                  Visit profile
+                </Link>
               </li>
             ))
           ) : (

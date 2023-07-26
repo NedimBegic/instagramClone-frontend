@@ -1,4 +1,4 @@
-.likes {
+.all {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -11,7 +11,7 @@
   flex-direction: column;
   align-items: center;
   border-radius: 20px;
-  max-width: 20em;
+  max-width: 40em;
   animation-name: entering;
   animation-duration: 500ms;
 }
@@ -47,35 +47,4 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-}
-
-.likes ul {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 0;
-  width: 100%;
-  padding-bottom: 4em;
-}
-
-.likes ul li {
-  display: flex;
-  width: 90%;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.button {
-  background-color: #4cb5f9;
-  color: #efefef;
-  border: none;
-  border-radius: 10px;
-  width: 7em;
-  height: 2.5em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  text-decoration: none;
 }

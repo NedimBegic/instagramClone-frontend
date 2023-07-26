@@ -11,12 +11,14 @@ import { useState, useContext } from "react";
 import AddPost from "./AddPost";
 import { useRouter } from "next/router";
 import Context from "@/store/createContext";
+import UpdateProfile from "./UpdateProfile";
 
 const Profile = (props) => {
   const { posting, togglePost } = useContext(Context);
   const router = useRouter();
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
+  const [editProfile, setEditProfile] = useState(false);
   const hideError = () => {
     setError(false);
   };
@@ -33,10 +35,15 @@ const Profile = (props) => {
   const backToFeed = () => {
     router.push("/");
   };
+
+  const edit = () => {
+    setEditProfile((prevState) => !prevState);
+  };
   return (
     <article className={styleProfile.all}>
       {error && <ErrorHandler onHide={hideError} message={message} />}
       {posting && <AddPost />}
+      {editProfile && <UpdateProfile edit={edit} />}
       <div className={styleProfile.head}>
         <FontAwesomeIcon
           onClick={backToFeed}
@@ -76,7 +83,7 @@ const Profile = (props) => {
           )}
           {props.isYours && (
             <div>
-              <button>Edit Profile</button>
+              <button onClick={edit}>Edit Profile</button>
               <button onClick={showPosting}>Add Post</button>
             </div>
           )}
@@ -91,7 +98,7 @@ const Profile = (props) => {
           <p>posts:</p> <h5>{props.profile.post.length}</h5>
         </div>
         <div>
-          {props.profile.post ? (
+          {props.profile.post.length > 0 ? (
             props.profile.post.map((post, i) => (
               <img
                 key={i}
