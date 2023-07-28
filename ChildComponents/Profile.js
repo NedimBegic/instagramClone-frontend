@@ -43,7 +43,7 @@ const Profile = (props) => {
     <article className={styleProfile.all}>
       {error && <ErrorHandler onHide={hideError} message={message} />}
       {posting && <AddPost />}
-      {editProfile && <UpdateProfile edit={edit} />}
+      {editProfile && <UpdateProfile edit={edit} profile={props.profile} />}
       <div className={styleProfile.head}>
         <FontAwesomeIcon
           onClick={backToFeed}

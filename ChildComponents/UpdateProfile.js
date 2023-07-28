@@ -16,6 +16,38 @@ const UpdateProfile = (props) => {
           />
           <h4>Edit Profile</h4>
         </div>
+        <div className={styleUpdate.pic}>
+          <div>
+            <img
+              src={
+                process.env.NEXT_PUBLIC_SITE +
+                  "/uploads/" +
+                  props.profile.photo || avatar
+              }
+            />
+          </div>
+          <div>
+            <h5>{props.profile.nickName}</h5>
+            <button>Change profile picture</button>
+          </div>
+        </div>
+        <div className={styleUpdate.info}>
+          <form>
+            <h5>Bio</h5>
+            <textarea
+              defaultValue={props.profile.description}
+              name="description"
+              placeholder="Change description"
+            ></textarea>
+            <h5>Name</h5>
+
+            <input
+              defaultValue={props.profile.name}
+              name="name"
+              placeholder="Change name"
+            />
+          </form>
+        </div>
       </div>
     </div>
   );
