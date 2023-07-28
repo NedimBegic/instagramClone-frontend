@@ -110,3 +110,13 @@
   margin-bottom: 0.8em;
   margin-top: 1em;
 }
+
+.info form button {
+  width: 7em;
+  margin-top: 1em;
+  height: 2em;
+  background-color: #4cb5f9;
+  color: #efefef;
+  border: none;
+  border-radius: 10px;
+}
