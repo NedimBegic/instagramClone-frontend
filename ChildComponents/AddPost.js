@@ -35,7 +35,6 @@ const AddPost = (props) => {
       body: formData,
     });
     const data = response.json();
-    console.log(data);
     togglePost();
     router.push("/");
   };

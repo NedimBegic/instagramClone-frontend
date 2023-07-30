@@ -1,0 +1,69 @@
+.all {
+  width: 90%;
+  max-width: 30em;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #efefef;
+  z-index: 24;
+  border-radius: 10px;
+  animation-name: entering;
+  animation-duration: 500ms;
+}
+
+@keyframes entering {
+  from {
+    translate: 0 3em;
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.all form {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  gap: 2em;
+}
+
+.all form button {
+  color: #4cb5f9;
+  background-color: #efefef;
+  border: none;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.head {
+  display: flex;
+  flex-direction: row;
+  height: 2.5em;
+  border-bottom: 1px solid grey;
+  width: 100%;
+  align-items: center;
+  justify-content: inherit;
+  position: relative;
+}
+
+.arrow {
+  font-size: 1.4em;
+  padding-left: 0.2em;
+  position: absolute;
+  left: 1em;
+}
+.head h4 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1em;
+  width: 56%;
+}
+
+@media (min-width: 500px) {
+  .head h4 {
+    width: auto;
+  }
+}

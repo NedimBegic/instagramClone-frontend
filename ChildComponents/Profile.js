@@ -12,6 +12,7 @@ import AddPost from "./AddPost";
 import { useRouter } from "next/router";
 import Context from "@/store/createContext";
 import UpdateProfile from "./UpdateProfile";
+import UploadProfilePhoto from "./UploadProfilePhoto";
 
 const Profile = (props) => {
   const { posting, togglePost } = useContext(Context);
@@ -44,6 +45,7 @@ const Profile = (props) => {
       {error && <ErrorHandler onHide={hideError} message={message} />}
       {posting && <AddPost />}
       {editProfile && <UpdateProfile edit={edit} profile={props.profile} />}
+      {<UploadProfilePhoto />}
       <div className={styleProfile.head}>
         <FontAwesomeIcon
           onClick={backToFeed}
