@@ -58,7 +58,7 @@ const UpdateProfile = (props) => {
           </div>
           <div>
             <h5>{props.profile.nickName}</h5>
-            <button>Change profile picture</button>
+            <button onClick={props.profilePhoto}>Change profile picture</button>
           </div>
         </div>
         <div className={styleUpdate.info}>

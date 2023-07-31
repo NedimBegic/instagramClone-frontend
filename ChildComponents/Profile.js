@@ -17,6 +17,7 @@ import UploadProfilePhoto from "./UploadProfilePhoto";
 const Profile = (props) => {
   const { posting, togglePost } = useContext(Context);
   const router = useRouter();
+  const [showUpload, setShowUpload] = useState(false);
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
   const [editProfile, setEditProfile] = useState(false);
@@ -40,12 +41,28 @@ const Profile = (props) => {
   const edit = () => {
     setEditProfile((prevState) => !prevState);
   };
+
+  const showUploadHandler = () => {
+    setShowUpload((prevState) => !prevState);
+    setEditProfile(false);
+  };
   return (
     <article className={styleProfile.all}>
       {error && <ErrorHandler onHide={hideError} message={message} />}
       {posting && <AddPost />}
-      {editProfile && <UpdateProfile edit={edit} profile={props.profile} />}
-      {<UploadProfilePhoto />}
+      {editProfile && (
+        <UpdateProfile
+          profilePhoto={showUploadHandler}
+          edit={edit}
+          profile={props.profile}
+        />
+      )}
+      {showUpload && (
+        <UploadProfilePhoto
+          profileId={props.profile._id}
+          showUploadHandler={showUploadHandler}
+        />
+      )}
       <div className={styleProfile.head}>
         <FontAwesomeIcon
           onClick={backToFeed}
