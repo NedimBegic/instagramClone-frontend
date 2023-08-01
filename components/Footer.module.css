@@ -17,3 +17,7 @@
   height: 1em;
   border-radius: 50%;
 }
+
+.noDiv {
+  position: absolute;
+}
