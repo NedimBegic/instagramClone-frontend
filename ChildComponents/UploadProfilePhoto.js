@@ -4,7 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
 import Cookies from "js-cookie";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import Context from "@/store/createContext";
 
 const UploadProfilePhoto = (props) => {
   const [photo, setPhoto] = useState();
@@ -31,6 +32,21 @@ const UploadProfilePhoto = (props) => {
         body: formData,
       }
     );
+    // ! change photo in footer who uses Cookies data
+    const getNewPhoto = await fetch(
+      process.env.NEXT_PUBLIC_SITE + `/user/${Cookies.get("nickName")}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${Cookies.get("token")}`,
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    let newPhoto = await getNewPhoto.json();
+    // change photo in the footer
+    Cookies.set("photo", `${newPhoto.data.photo}`, { expires: 7 });
     props.showUploadHandler();
     router.push(`/${Cookies.get("nickName")}`);
   };

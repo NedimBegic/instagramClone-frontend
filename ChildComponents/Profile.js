@@ -21,6 +21,7 @@ const Profile = (props) => {
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
   const [editProfile, setEditProfile] = useState(false);
+
   const hideError = () => {
     setError(false);
   };
@@ -46,10 +47,12 @@ const Profile = (props) => {
     setShowUpload((prevState) => !prevState);
     setEditProfile(false);
   };
+
   return (
     <article className={styleProfile.all}>
       {error && <ErrorHandler onHide={hideError} message={message} />}
       {posting && <AddPost />}
+
       {editProfile && (
         <UpdateProfile
           profilePhoto={showUploadHandler}
@@ -120,6 +123,7 @@ const Profile = (props) => {
           {props.profile.post.length > 0 ? (
             props.profile.post.map((post, i) => (
               <img
+                onClick={() => router.push(`/post/${post._id}`)}
                 key={i}
                 src={process.env.NEXT_PUBLIC_SITE + "/uploads/" + post.photo}
               />
