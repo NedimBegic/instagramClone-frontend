@@ -50,6 +50,10 @@
   padding-left: 1em;
 }
 
+.arrow:hover {
+  cursor: pointer;
+}
+
 .head h4 {
   position: absolute;
   left: 50%;

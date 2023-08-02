@@ -1,5 +1,28 @@
+import Post from "@/components/Post";
+import { useState } from "react";
+import Comments from "@/components/Comments";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import styleList from "./PostId.module.css";
+
 const SinglePost = (props) => {
-  return <div></div>;
+  const [comments, setComments] = useState(false);
+  const openComments = () => {
+    setComments((prevState) => !prevState);
+  };
+
+  return (
+    <div>
+      <Header />
+      {comments && <Comments toggleComments={openComments} />}
+      <Post
+        className={styleList.list}
+        openComments={openComments}
+        post={props.post.data}
+      />
+      <Footer />
+    </div>
+  );
 };
 
 export async function getStaticPaths() {

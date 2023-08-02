@@ -107,8 +107,10 @@ const Post = (props) => {
   const viewLikes = () => {
     setOpenLikes((prevState) => !prevState);
   };
+
+  const style = stylePost.li + " " + props.className;
   return (
-    <li className={stylePost.li} key={props.post.id}>
+    <li className={style} key={props.post.id}>
       {openLikes && <Liked viewLikes={viewLikes} users={likeArray} />}
       <div className={stylePost.creator}>
         <img
