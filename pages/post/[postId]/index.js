@@ -1,12 +1,16 @@
 import Post from "@/components/Post";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Comments from "@/components/Comments";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import styleList from "./PostId.module.css";
+import Context from "@/store/createContext";
+import AddPost from "@/ChildComponents/AddPost";
 
 const SinglePost = (props) => {
   const [comments, setComments] = useState(false);
+  const { posting, togglePost } = useContext(Context);
+
   const openComments = () => {
     setComments((prevState) => !prevState);
   };
@@ -14,6 +18,7 @@ const SinglePost = (props) => {
   return (
     <div>
       <Header />
+      {posting && <AddPost />}
       {comments && <Comments toggleComments={openComments} />}
       <Post
         className={styleList.list}

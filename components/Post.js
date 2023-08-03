@@ -108,6 +108,10 @@ const Post = (props) => {
     setOpenLikes((prevState) => !prevState);
   };
 
+  const goToPost = () => {
+    router.push(`/post/${props.post.id}`);
+  };
+
   const style = stylePost.li + " " + props.className;
   return (
     <li className={style} key={props.post.id}>
@@ -123,7 +127,7 @@ const Post = (props) => {
         <span>{"• " + dateOFPost(props.post.createdAt)}</span>
       </div>
       <img
-        onClick={goToComments}
+        onClick={goToPost}
         src={process.env.NEXT_PUBLIC_SITE + "/uploads/" + props.post.photo}
       />
       <div className={stylePost.bellow}>
