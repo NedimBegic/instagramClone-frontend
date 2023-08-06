@@ -34,6 +34,14 @@ const UpdateProfile = (props) => {
     router.push(`/${props.profile.nickName}`);
   };
 
+  // set image of user
+  let userPhoto;
+  if (props.profile.photo == "no-photo.jpg") {
+    userPhoto = "/avatar.jpg";
+  } else {
+    userPhoto =
+      process.env.NEXT_PUBLIC_SITE + "/uploads/" + props.profile.photo;
+  }
   return (
     <div>
       <Backdrop onHide={props.edit} />
@@ -48,13 +56,7 @@ const UpdateProfile = (props) => {
         </div>
         <div className={styleUpdate.pic}>
           <div>
-            <img
-              src={
-                process.env.NEXT_PUBLIC_SITE +
-                  "/uploads/" +
-                  props.profile.photo || avatar
-              }
-            />
+            <img src={userPhoto} />
           </div>
           <div>
             <h5>{props.profile.nickName}</h5>

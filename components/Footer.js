@@ -17,6 +17,7 @@ const Footer = () => {
   const [image, setImage] = useState("");
   const [showError, setShowError] = useState(false);
   const [errMessage, setErrMessage] = useState("");
+
   useEffect(() => {
     setImage(photo);
   }, [image, setImage]);
@@ -47,16 +48,38 @@ const Footer = () => {
   const hideError = () => {
     setShowError(false);
   };
+
+  // check if the user has updated his photo
+  let userPhoto;
+  if (image == "no-photo.jpg") {
+    userPhoto = "/avatar.jpg";
+  } else {
+    userPhoto = process.env.NEXT_PUBLIC_SITE + "/uploads/" + image;
+  }
+
   return (
     <div className={styleFooter.div}>
-      <FontAwesomeIcon onClick={goFeed} icon={faHouse} />
-      <FontAwesomeIcon onClick={onSearch} icon={faMagnifyingGlass} />
-      <FontAwesomeIcon onClick={onReel} icon={faCirclePlay} />
-      <FontAwesomeIcon onClick={onMessage} icon={faPaperPlane} />
-      <img
-        onClick={toProfile}
-        src={process.env.NEXT_PUBLIC_SITE + "/uploads/" + image}
-      />
+      <div>
+        <FontAwesomeIcon onClick={goFeed} icon={faHouse} />{" "}
+        <p className={styleFooter.destop}>Home</p>
+      </div>
+      <div>
+        <FontAwesomeIcon onClick={onSearch} icon={faMagnifyingGlass} />{" "}
+        <p className={styleFooter.destop}>Explore</p>
+      </div>
+      <div>
+        <FontAwesomeIcon onClick={onReel} icon={faCirclePlay} />{" "}
+        <p className={styleFooter.destop}>Reels</p>
+      </div>
+      <div>
+        <FontAwesomeIcon onClick={onMessage} icon={faPaperPlane} />
+        <p className={styleFooter.destop}>Messages</p>
+      </div>
+      <div>
+        <img onClick={toProfile} src={userPhoto} />
+        <p className={styleFooter.destop}>Profile</p>
+      </div>
+
       <div className={styleFooter.noDiv}>
         {showError && <ErrorHandler onHide={hideError} message={errMessage} />}
       </div>

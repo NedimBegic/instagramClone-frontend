@@ -5,7 +5,6 @@ import {
   faEllipsis,
   faUserPlus,
 } from "@fortawesome/free-solid-svg-icons";
-import avatar from "../public/avatar.jpg";
 import ErrorHandler from "./ErrorHandler";
 import { useState, useContext } from "react";
 import AddPost from "./AddPost";
@@ -13,6 +12,7 @@ import { useRouter } from "next/router";
 import Context from "@/store/createContext";
 import UpdateProfile from "./UpdateProfile";
 import UploadProfilePhoto from "./UploadProfilePhoto";
+import Cookies from "js-cookie";
 
 const Profile = (props) => {
   const { posting, togglePost } = useContext(Context);
@@ -22,6 +22,17 @@ const Profile = (props) => {
   const [message, setMessage] = useState("");
   const [editProfile, setEditProfile] = useState(false);
 
+  // declare is this profile from logged user
+  let isYours = Cookies.get("nickName") == props.profile.nickName;
+
+  // check if the user has updated his photo
+  let userPhoto;
+  if (props.profile.photo == "no-photo.jpg") {
+    userPhoto = "/avatar.jpg";
+  } else {
+    userPhoto =
+      process.env.NEXT_PUBLIC_SITE + "/uploads/" + props.profile.photo;
+  }
   const hideError = () => {
     setError(false);
   };
@@ -75,12 +86,7 @@ const Profile = (props) => {
         <h4>{props.profile.nickName}</h4>
       </div>
       <div className={styleProfile.pic}>
-        <img
-          src={
-            process.env.NEXT_PUBLIC_SITE + "/uploads/" + props.profile.photo ||
-            avatar
-          }
-        />
+        <img src={userPhoto} />
         <div className={styleProfile.info}>
           <div>
             <p>{props.profile.nickName}</p>
@@ -92,7 +98,7 @@ const Profile = (props) => {
               />
             )}
           </div>
-          {!props.isYours && (
+          {!isYours && (
             <div>
               <button onClick={showError}>Follow</button>
               <button onClick={showError}>Message</button>
@@ -103,7 +109,7 @@ const Profile = (props) => {
               />
             </div>
           )}
-          {props.isYours && (
+          {isYours && (
             <div>
               <button onClick={edit}>Edit Profile</button>
               <button onClick={showPosting}>Add Post</button>

@@ -21,3 +21,17 @@
 .noDiv {
   position: absolute;
 }
+
+.destop {
+  display: none;
+}
+
+@media (min-width: 800px) {
+  .div {
+    position: fixed;
+    height: 100%;
+    width: 3em;
+    flex-direction: column;
+    left: 0;
+  }
+}

@@ -1,0 +1,7 @@
+@media (min-width: 800px) {
+  .all {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
+  }
+}

@@ -64,3 +64,9 @@
 .fullScreen {
   position: absolute;
 }
+
+@media (min-width: 800px) {
+  .div {
+    display: none;
+  }
+}

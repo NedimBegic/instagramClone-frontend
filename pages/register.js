@@ -58,35 +58,44 @@ const Register = () => {
   };
 
   return (
-    <div className={styleRegister.div}>
-      <form onSubmit={submitRegister}>
-        <h2>Instagram</h2>
-        <input
-          ref={nickNameRef}
-          name="nickName"
-          type="text"
-          placeholder="nickname"
-        />
-        <input ref={nameRef} name="name" type="text" placeholder="name" />
-        <input ref={emailRef} name="email" type="email" placeholder="email" />
-        <input
-          ref={passRef}
-          name="password"
-          type="password"
-          placeholder="password"
-        />
-        <input
-          ref={passRef2}
-          name="password"
-          type="password"
-          placeholder="password"
-        />
-        <p>{errMessage}</p>
-        <button type="submit">Create account</button>
-      </form>
-      <div>
-        <p>Already have an accaunt?</p>
-        <button onClick={toLoginHandler}>Log in</button>
+    <div className={styleRegister.all}>
+      <div className={styleRegister.loginPic}>
+        <img src="/login.png" />
+      </div>
+      <div className={styleRegister.div}>
+        <form onSubmit={submitRegister}>
+          <h2>Instagram</h2>
+          <input
+            ref={nickNameRef}
+            name="nickName"
+            type="text"
+            placeholder="nickname"
+          />
+          <input ref={nameRef} name="name" type="text" placeholder="name" />
+          <input ref={emailRef} name="email" type="email" placeholder="email" />
+          <input
+            ref={passRef}
+            name="password"
+            type="password"
+            placeholder="password"
+          />
+          <input
+            ref={passRef2}
+            name="password"
+            type="password"
+            placeholder="password"
+          />
+          <p>{errMessage}</p>
+          <button className={styleRegister.logIn} type="submit">
+            Create account
+          </button>
+        </form>
+        <div>
+          <p>Already have an accaunt?</p>
+          <button className={styleRegister.logIn} onClick={toLoginHandler}>
+            Log in
+          </button>
+        </div>
       </div>
     </div>
   );

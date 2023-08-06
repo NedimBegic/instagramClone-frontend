@@ -57,22 +57,31 @@ const Login = () => {
   };
 
   return (
-    <div className={styleLogin.div}>
-      <h2>Instagram</h2>
-      <form onSubmit={submitLogin}>
-        <input ref={emailRef} name="email" type="email" placeholder="email" />
-        <input
-          ref={passRef}
-          name="password"
-          type="password"
-          placeholder="password"
-        />
-        <p>{errMessage}</p>
-        <button type="submit">Log in</button>
-      </form>
-      <div>
-        <p>Don't have an accaunt?</p>
-        <button onClick={toRegisterHandler}>Sing up</button>
+    <div className={styleLogin.all}>
+      <div className={styleLogin.loginPic}>
+        <img src="/login.png" />
+      </div>
+      <div className={styleLogin.div}>
+        <h2>Instagram</h2>
+        <form onSubmit={submitLogin}>
+          <input ref={emailRef} name="email" type="email" placeholder="email" />
+          <input
+            ref={passRef}
+            name="password"
+            type="password"
+            placeholder="password"
+          />
+          <p>{errMessage}</p>
+          <button className={styleLogin.singup} type="submit">
+            Log in
+          </button>
+        </form>
+        <div>
+          <p>Don't have an accaunt?</p>
+          <button className={styleLogin.singup} onClick={toRegisterHandler}>
+            Sing up
+          </button>
+        </div>
       </div>
     </div>
   );
