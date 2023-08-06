@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap");
+
 .div {
   width: 100%;
   position: fixed;
@@ -26,6 +28,24 @@
   display: none;
 }
 
+.tablet {
+  display: none;
+  position: absolute;
+}
+
+.insta {
+  font-family: "Dancing Script", cursive;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.div > div:hover,
+.tablet:hover {
+  cursor: pointer;
+  background-color: #dfd7d7d2;
+  border-radius: 10x;
+}
+
 @media (min-width: 800px) {
   .div {
     position: fixed;
@@ -33,5 +53,87 @@
     width: 3em;
     flex-direction: column;
     left: 0;
+    gap: -2em;
+  }
+
+  .tablet {
+    display: block;
+    width: 100%;
+    position: initial;
+    display: flex;
+    justify-content: center;
+  }
+
+  .insta {
+    display: none;
+  }
+
+  .tablet div button {
+    width: 98%;
+    text-align: left;
+    height: 4em;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 10px;
+  }
+
+  .tablet div button:hover {
+    cursor: pointer;
+    background-color: #dfd7d7d2;
+  }
+}
+
+@media (min-width: 1300px) {
+  .div {
+    width: 10em;
+  }
+
+  .destop {
+    display: block;
+  }
+
+  .noTablet {
+    display: none;
+  }
+
+  .insta {
+    display: block;
+  }
+
+  .tablet {
+    display: block;
+    display: flex;
+    border-radius: 10px;
+    width: 90%;
+    padding-left: 1em;
+    gap: 0.6em;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .div > div {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 90%;
+    padding-left: 1em;
+    border-radius: 10px;
+    gap: 0.6em;
+    font-size: 0.9em;
+  }
+
+  .tablet div button {
+    width: 98%;
+    text-align: left;
+    height: 4em;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 10px;
+  }
+
+  .tablet div button:hover {
+    cursor: pointer;
+    background-color: #dfd7d7d2;
   }
 }

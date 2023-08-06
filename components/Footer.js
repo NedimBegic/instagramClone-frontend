@@ -1,5 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHouse, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faInstagram } from "@fortawesome/free-brands-svg-icons";
+import {
+  faHouse,
+  faMagnifyingGlass,
+  faBars,
+} from "@fortawesome/free-solid-svg-icons";
 import styleFooter from "./Footer.module.css";
 import {
   faPaperPlane,
@@ -9,6 +14,7 @@ import Cookies from "js-cookie";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import ErrorHandler from "@/ChildComponents/ErrorHandler";
+import More from "@/ChildComponents/More";
 
 const Footer = () => {
   const router = useRouter();
@@ -17,6 +23,7 @@ const Footer = () => {
   const [image, setImage] = useState("");
   const [showError, setShowError] = useState(false);
   const [errMessage, setErrMessage] = useState("");
+  const [more, setMore] = useState(false);
 
   useEffect(() => {
     setImage(photo);
@@ -57,8 +64,16 @@ const Footer = () => {
     userPhoto = process.env.NEXT_PUBLIC_SITE + "/uploads/" + image;
   }
 
+  const toggleMore = () => {
+    setMore((prevState) => !prevState);
+  };
+
   return (
     <div className={styleFooter.div}>
+      <article className={styleFooter.tablet}>
+        <FontAwesomeIcon className={styleFooter.noTablet} icon={faInstagram} />
+        <p className={styleFooter.insta}>Instagram</p>
+      </article>
       <div>
         <FontAwesomeIcon onClick={goFeed} icon={faHouse} />{" "}
         <p className={styleFooter.destop}>Home</p>
@@ -83,6 +98,11 @@ const Footer = () => {
       <div className={styleFooter.noDiv}>
         {showError && <ErrorHandler onHide={hideError} message={errMessage} />}
       </div>
+      <article onClick={toggleMore} className={styleFooter.tablet}>
+        {more && <More onHide={toggleMore} />}
+        <FontAwesomeIcon icon={faBars} />
+        <p className={styleFooter.destop}>More</p>
+      </article>
     </div>
   );
 };
