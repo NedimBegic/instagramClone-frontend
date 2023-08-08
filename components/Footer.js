@@ -33,8 +33,12 @@ const Footer = () => {
     router.push(`/${logedUser}`);
   };
 
+  const refresh = () => {
+    window.location.reload(true);
+  };
   const goFeed = () => {
     router.push("/");
+    console.log("he");
   };
 
   const onSearch = () => {
@@ -70,28 +74,28 @@ const Footer = () => {
 
   return (
     <div className={styleFooter.div}>
-      <article className={styleFooter.tablet}>
+      <article className={styleFooter.tablet} onClick={refresh}>
         <FontAwesomeIcon className={styleFooter.noTablet} icon={faInstagram} />
         <p className={styleFooter.insta}>Instagram</p>
       </article>
-      <div>
-        <FontAwesomeIcon onClick={goFeed} icon={faHouse} />{" "}
+      <div onClick={goFeed}>
+        <FontAwesomeIcon icon={faHouse} />
         <p className={styleFooter.destop}>Home</p>
       </div>
-      <div>
-        <FontAwesomeIcon onClick={onSearch} icon={faMagnifyingGlass} />{" "}
+      <div onClick={onSearch}>
+        <FontAwesomeIcon icon={faMagnifyingGlass} />
         <p className={styleFooter.destop}>Explore</p>
       </div>
-      <div>
-        <FontAwesomeIcon onClick={onReel} icon={faCirclePlay} />{" "}
+      <div onClick={onReel}>
+        <FontAwesomeIcon icon={faCirclePlay} />
         <p className={styleFooter.destop}>Reels</p>
       </div>
-      <div>
-        <FontAwesomeIcon onClick={onMessage} icon={faPaperPlane} />
+      <div onClick={onMessage}>
+        <FontAwesomeIcon icon={faPaperPlane} />
         <p className={styleFooter.destop}>Messages</p>
       </div>
-      <div>
-        <img onClick={toProfile} src={userPhoto} />
+      <div onClick={toProfile}>
+        <img src={userPhoto} />
         <p className={styleFooter.destop}>Profile</p>
       </div>
 

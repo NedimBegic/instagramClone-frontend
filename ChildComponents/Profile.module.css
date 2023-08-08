@@ -126,3 +126,52 @@
 .all article p {
   margin-top: -0.6em;
 }
+
+@media (min-width: 800px) {
+  .head {
+    display: none;
+  }
+
+  .pic {
+    font-size: 1.3em;
+    margin-bottom: -2em;
+    padding-left: 4em;
+  }
+
+  .info {
+    position: relative;
+    left: -1.7em;
+  }
+
+  .pic img {
+    position: relative;
+    top: 1em;
+    left: -1em;
+    font-size: 1.3em;
+  }
+
+  .all article {
+    padding-left: 10em;
+  }
+
+  .all section {
+    width: 100%;
+    position: relative;
+    padding-left: 5em;
+  }
+}
+
+@media (min-width: 1000px) {
+  .all {
+    width: 100% !important;
+    padding-left: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center !important;
+    border: 1px solid red;
+  }
+
+  .all section {
+    width: 90%;
+  }
+}

@@ -1,0 +1,10 @@
+.allDiv {
+  width: 100%;
+}
+
+@media (min-width: 1000px) {
+  .allDiv {
+    display: flex;
+    justify-content: center;
+  }
+}
