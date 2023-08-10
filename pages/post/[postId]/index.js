@@ -16,7 +16,7 @@ const SinglePost = (props) => {
   };
 
   return (
-    <div>
+    <div className={styleList.all}>
       <Header />
       {posting && <AddPost />}
       {comments && <Comments toggleComments={openComments} />}

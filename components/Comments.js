@@ -7,15 +7,17 @@ import Comment from "@/ChildComponents/Comment";
 import Cookies from "js-cookie";
 
 /* Backkdrop component */
-const Backdrop = () => {
-  return <div className={styleComment.backdrop}></div>;
+const Backdrop = (props) => {
+  return (
+    <div onClick={props.toggleComments} className={styleComment.backdrop}></div>
+  );
 };
 
 /* Content component */
 const Content = (props) => {
   const photo = Cookies.get("photo");
   const nickaName = Cookies.get("nickName");
-  const { postId } = useContext(Context);
+  const { postId, postPhoto } = useContext(Context);
   const buttonRef = useRef();
   const inputRef = useRef();
   const [post, setPost] = useState([]);
@@ -77,7 +79,9 @@ const Content = (props) => {
 
   return (
     <div className={styleComment.content}>
-      <div className={styleComment.pic}>picture</div>
+      <div className={styleComment.pic}>
+        <img src={process.env.NEXT_PUBLIC_SITE + "/uploads/" + postPhoto} />
+      </div>
       <div className={styleComment.right}>
         <div className={styleComment.head}>
           <FontAwesomeIcon
@@ -116,7 +120,7 @@ const Content = (props) => {
 const Comments = (props) => {
   return (
     <div>
-      <Backdrop />
+      <Backdrop toggleComments={props.toggleComments} />
       <Content toggleComments={props.toggleComments} />
     </div>
   );

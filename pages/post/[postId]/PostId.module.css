@@ -2,3 +2,8 @@
   padding-top: 4em;
   border-bottom: none !important;
 }
+
+.all {
+  display: flex;
+  justify-content: space-evenly;
+}

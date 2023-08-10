@@ -1,5 +1,4 @@
 import styleComment from "./Comment.module.css";
-import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
 const Comment = (props) => {

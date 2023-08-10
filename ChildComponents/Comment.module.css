@@ -29,3 +29,14 @@
   text-align: center;
   margin-left: -4em;
 }
+
+@media (min-width: 800px) {
+  .ul {
+    width: 100%;
+    -ms-overflow-style: none !important;
+    scrollbar-width: none;
+  }
+  .ul::-webkit-scrollbar {
+    display: none;
+  }
+}

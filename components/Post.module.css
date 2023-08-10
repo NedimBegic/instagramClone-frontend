@@ -87,3 +87,14 @@
 .flag:hover {
   cursor: pointer;
 }
+
+@media (min-width: 800px) {
+  .li {
+    font-size: 1.2em;
+    margin-top: -2em;
+  }
+
+  .li > img {
+    height: 25em;
+  }
+}

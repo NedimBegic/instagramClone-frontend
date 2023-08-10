@@ -175,6 +175,11 @@
     cursor: pointer;
   }
 
+  .all section div img {
+    height: 20em !important;
+    min-height: 18em !important;
+  }
+
   .nameDot {
     width: 50% !important;
     display: flex;

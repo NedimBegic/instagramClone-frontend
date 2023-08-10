@@ -15,6 +15,7 @@ import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import Context from "@/store/createContext";
 import Liked from "@/ChildComponents/Liked";
+import ErrorHandler from "@/ChildComponents/ErrorHandler";
 
 const Post = (props) => {
   const [saveButton, setSaveButton] = useState(false);
@@ -23,7 +24,9 @@ const Post = (props) => {
   const [numOfComments, setNumOfComments] = useState(props.post.comment.length);
   const router = useRouter();
   const logedUser = Cookies.get("nickName");
-  const { changePostId } = useContext(Context);
+  const [errMessage, setErrorMessage] = useState("");
+  const [isError, setIsError] = useState(false);
+  const { changePostId, changePostPhoto } = useContext(Context);
   const [openLikes, setOpenLikes] = useState(false);
 
   /* Did the logged user liked the post ( used for initial render to remember the like) */
@@ -95,6 +98,7 @@ const Post = (props) => {
 
   /* Open the comments */
   const goToComments = () => {
+    changePostPhoto(props.post.photo);
     changePostId(props.post.id);
     props.openComments();
   };
@@ -112,9 +116,15 @@ const Post = (props) => {
     router.push(`/post/${props.post.id}`);
   };
 
+  const onErrorHandler = () => {
+    setErrorMessage("No messenger yet");
+    setIsError((prevState) => !prevState);
+  };
+
   const style = stylePost.li + " " + props.className;
   return (
     <li className={style} key={props.post.id}>
+      {isError && <ErrorHandler message={errMessage} onHide={onErrorHandler} />}
       {openLikes && <Liked viewLikes={viewLikes} users={likeArray} />}
       <div className={stylePost.creator}>
         <img
@@ -142,7 +152,7 @@ const Post = (props) => {
             <FontAwesomeIcon onClick={postLike} icon={faHeart} />
           )}
           <FontAwesomeIcon onClick={goToComments} icon={faComment} />
-          <FontAwesomeIcon icon={faPaperPlane} />
+          <FontAwesomeIcon onClick={onErrorHandler} icon={faPaperPlane} />
         </div>
         {!saveButton ? (
           <FontAwesomeIcon
