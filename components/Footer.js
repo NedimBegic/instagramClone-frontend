@@ -33,9 +33,6 @@ const Footer = () => {
     router.push(`/${logedUser}`);
   };
 
-  const refresh = () => {
-    window.location.reload(true);
-  };
   const goFeed = () => {
     router.push("/");
     console.log("he");
@@ -74,7 +71,7 @@ const Footer = () => {
 
   return (
     <div className={styleFooter.div}>
-      <article className={styleFooter.tablet} onClick={refresh}>
+      <article className={styleFooter.tablet} onClick={goFeed}>
         <FontAwesomeIcon className={styleFooter.noTablet} icon={faInstagram} />
         <p className={styleFooter.insta}>Instagram</p>
       </article>

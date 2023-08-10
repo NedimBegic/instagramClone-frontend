@@ -88,9 +88,9 @@ const Profile = (props) => {
       <div className={styleProfile.pic}>
         <img src={userPhoto} />
         <div className={styleProfile.info}>
-          <div>
+          <div className={styleProfile.nameDot}>
             <p>{props.profile.nickName}</p>
-            {!props.isYours && (
+            {!isYours && (
               <FontAwesomeIcon
                 onClick={showError}
                 className={styleProfile.dots}
@@ -99,7 +99,7 @@ const Profile = (props) => {
             )}
           </div>
           {!isYours && (
-            <div>
+            <div className={styleProfile.inLine}>
               <button onClick={showError}>Follow</button>
               <button onClick={showError}>Message</button>
               <FontAwesomeIcon
@@ -110,7 +110,7 @@ const Profile = (props) => {
             </div>
           )}
           {isYours && (
-            <div>
+            <div className={styleProfile.inLine}>
               <button onClick={edit}>Edit Profile</button>
               <button onClick={showPosting}>Add Post</button>
             </div>

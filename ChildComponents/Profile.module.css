@@ -132,6 +132,10 @@
     display: none;
   }
 
+  .posts {
+    margin-top: 3em;
+  }
+
   .pic {
     font-size: 1.3em;
     margin-bottom: -2em;
@@ -151,7 +155,35 @@
   }
 
   .all article {
-    padding-left: 10em;
+    padding-left: 14em;
+    margin-top: -5em;
+  }
+
+  .inLine {
+    margin-bottom: 0.3em;
+  }
+
+  .info {
+    display: flex;
+    width: auto;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .inLine > *:hover,
+  .dots:hover {
+    cursor: pointer;
+  }
+
+  .nameDot {
+    width: 50% !important;
+    display: flex;
+    justify-content: flex-start;
+    gap: 0.6em !important;
+  }
+
+  .add {
+    font-size: 0.45em;
   }
 
   .all section {
@@ -161,17 +193,26 @@
   }
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 1300px) {
   .all {
     width: 100% !important;
     padding-left: 1em;
     display: flex;
     flex-direction: column;
     align-items: center !important;
-    border: 1px solid red;
   }
 
   .all section {
     width: 90%;
+  }
+
+  .all article {
+    padding-left: 0em;
+    margin-top: -3em;
+    margin-left: -20em;
+  }
+
+  .pic {
+    margin-right: 15em;
   }
 }
