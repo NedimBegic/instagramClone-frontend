@@ -11,19 +11,23 @@ import {
   faCirclePlay,
 } from "@fortawesome/free-regular-svg-icons";
 import Cookies from "js-cookie";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
 import ErrorHandler from "@/ChildComponents/ErrorHandler";
 import More from "@/ChildComponents/More";
+import AddPost from "@/ChildComponents/AddPost";
+import Context from "@/store/createContext";
 
 const Footer = () => {
   const router = useRouter();
+  const [posting, setPosting] = useState(false);
   const photo = Cookies.get("photo");
   const logedUser = Cookies.get("nickName");
   const [image, setImage] = useState("");
   const [showError, setShowError] = useState(false);
   const [errMessage, setErrMessage] = useState("");
   const [more, setMore] = useState(false);
+  const { togglePost } = useContext(Context);
 
   useEffect(() => {
     setImage(photo);
@@ -57,6 +61,12 @@ const Footer = () => {
     setShowError(false);
   };
 
+  const onLogOut = () => {
+    Cookies.remove("token");
+    router.push("/login");
+    toggleMore(false);
+  };
+
   // check if the user has updated his photo
   let userPhoto;
   if (image == "no-photo.jpg") {
@@ -71,6 +81,7 @@ const Footer = () => {
 
   return (
     <div className={styleFooter.div}>
+      {posting && <AddPost />}
       <article className={styleFooter.tablet} onClick={goFeed}>
         <FontAwesomeIcon className={styleFooter.noTablet} icon={faInstagram} />
         <p className={styleFooter.insta}>Instagram</p>
@@ -100,7 +111,13 @@ const Footer = () => {
         {showError && <ErrorHandler onHide={hideError} message={errMessage} />}
       </div>
       <article onClick={toggleMore} className={styleFooter.tablet}>
-        {more && <More onHide={toggleMore} />}
+        {more && (
+          <More
+            onPostHandler={togglePost}
+            onLogOut={onLogOut}
+            onHide={toggleMore}
+          />
+        )}
         <FontAwesomeIcon icon={faBars} />
         <p className={styleFooter.destop}>More</p>
       </article>

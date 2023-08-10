@@ -6,8 +6,8 @@ const More = (props) => {
     <div>
       <Backdrop onHide={props.onhide} />
       <div className={styleMore.all}>
-        <button>Create post</button>
-        <button>Log out</button>
+        <button onClick={props.onPostHandler}>Create post</button>
+        <button onClick={props.onLogOut}>Log out</button>
       </div>
     </div>
   );
