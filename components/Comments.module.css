@@ -128,10 +128,14 @@
 
   .postComment {
     position: inherit;
+    position: relative;
+    bottom: 0em;
+    width: 100;
   }
 
   .right {
     width: 50%;
+    height: 100%;
   }
 
   .content {
