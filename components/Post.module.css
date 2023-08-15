@@ -1,6 +1,6 @@
 .li {
   width: 100%;
-  max-width: 40em;
+  max-width: 35em !important;
   list-style: none;
   border-bottom: 1px solid gray;
   margin-bottom: 2em;
@@ -91,10 +91,10 @@
 @media (min-width: 800px) {
   .li {
     font-size: 1.2em;
-    margin-top: -2em;
+    margin-top: 0em;
   }
 
   .li > img {
-    height: 25em;
+    height: 23em !important;
   }
 }

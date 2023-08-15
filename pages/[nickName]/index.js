@@ -2,6 +2,7 @@ import Profile from "@/ChildComponents/Profile";
 import Footer from "@/components/Footer";
 import style from "./index.module.css";
 const User = (props) => {
+  console.log(props.user);
   return (
     <div className={style.allDiv}>
       <Profile profile={props.user.data} isYours={props.user.hisProfile} />
@@ -33,14 +34,13 @@ export async function getStaticProps(context) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_SITE}/user/${nickName}`, {
     method: "GET",
     headers: {
-      Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ODc1N2Q2MDUwYTFiYTZkOGU4NjNmMCIsImlhdCI6MTY4OTUyNDA2NywiZXhwIjoxNjkyMTE2MDY3fQ.tjrPoHWrQs32U2Kymcow66X5Caz0K3q4I5vXfTpvs7g`,
+      Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ODc1N2Q2MDUwYTFiYTZkOGU4NjNmMCIsImlhdCI6MTY5MjEyODcxMSwiZXhwIjoxNjk0NzIwNzExfQ.QlUKraWmEKX19tr_ug5WHIuJqsAKfjtd2XBWfkwyfCY`,
       Accept: "application/json",
       "Content-Type": "application/json",
     },
   });
 
   const data = await res.json();
-
   return {
     props: {
       // we send this as props to this component

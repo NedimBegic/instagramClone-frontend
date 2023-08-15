@@ -77,6 +77,14 @@ const Content = (props) => {
     buttonRef.current.style.opacity = 0.4;
   };
 
+  // check if the user has updated his photo
+  let userPhoto;
+  if (photo == "no-photo.jpg") {
+    userPhoto = "/avatar.jpg";
+  } else {
+    userPhoto = process.env.NEXT_PUBLIC_SITE + "/uploads/" + photo;
+  }
+
   return (
     <div className={styleComment.content}>
       <div className={styleComment.pic}>
@@ -95,10 +103,7 @@ const Content = (props) => {
         <section className={styleComment.postComment}>
           <div>
             {" "}
-            <img
-              src={process.env.NEXT_PUBLIC_SITE + "/uploads/" + photo}
-              alt="picture of loged user"
-            />
+            <img src={userPhoto} alt="picture of loged user" />
           </div>
           <form onSubmit={putComment}>
             <input
