@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const Liked = (props) => {
   const [user, setUser] = useState(props.users);
@@ -23,7 +24,7 @@ const Liked = (props) => {
         <ul>
           {user.length > 0 ? (
             user.map((item) => (
-              <li onClick={visitProfile} key={item}>
+              <li key={item}>
                 <p>{item}</p>
                 <Link className={styleLiked.button} href={`/${item}`}>
                   Visit profile

@@ -2,7 +2,6 @@ import Profile from "@/ChildComponents/Profile";
 import Footer from "@/components/Footer";
 import style from "./index.module.css";
 const User = (props) => {
-  console.log(props.user);
   return (
     <div className={style.allDiv}>
       <Profile profile={props.user.data} isYours={props.user.hisProfile} />
