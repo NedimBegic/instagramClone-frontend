@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
 
 const Liked = (props) => {
   const [user, setUser] = useState(props.users);
