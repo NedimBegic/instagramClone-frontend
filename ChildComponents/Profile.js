@@ -23,13 +23,14 @@ const Profile = (props) => {
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
   const [editProfile, setEditProfile] = useState(false);
+  const [description, setDescription] = useState(props.profile.description);
 
   // declare is this profile from logged user
   let isYours = Cookies.get("nickName") == props.profile.nickName;
 
   useEffect(() => {
     setImage(photo);
-  }, [image, setImage]);
+  }, [image, setImage, description]);
 
   // check if the user has updated his photo
   let userPhoto;
@@ -124,7 +125,7 @@ const Profile = (props) => {
       </div>
       <article>
         <h5>{props.profile.name}</h5>
-        <p>{props.profile.description || "No description added"}</p>
+        <p>{description || "No description added"}</p>
       </article>
       <section>
         <div className={styleProfile.posts}>
