@@ -25,6 +25,8 @@ const Profile = (props) => {
   const [editProfile, setEditProfile] = useState(false);
   const [description, setDescription] = useState(props.profile.description);
 
+  console.log(props.profile);
+
   // declare is this profile from logged user
   let isYours = Cookies.get("nickName") == props.profile.nickName;
 
