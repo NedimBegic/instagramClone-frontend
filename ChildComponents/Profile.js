@@ -32,7 +32,7 @@ const Profile = (props) => {
 
   useEffect(() => {
     setImage(photo);
-  }, [image, setImage, description]);
+  }, [image, setImage, description, setDescription]);
 
   // check if the user has updated his photo
   let userPhoto;
@@ -74,6 +74,7 @@ const Profile = (props) => {
 
       {editProfile && (
         <UpdateProfile
+          updateInfo={setDescription}
           profilePhoto={showUploadHandler}
           edit={edit}
           profile={props.profile}
