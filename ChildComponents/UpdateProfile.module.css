@@ -15,7 +15,9 @@
   animation-name: entering;
   animation-duration: 500ms;
 }
-
+.all button:hover {
+  cursor: pointer;
+}
 @keyframes entering {
   from {
     translate: 0 3em;

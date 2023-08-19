@@ -2,14 +2,11 @@ import stylePhoto from "./UploadProfilePhoto.module.css";
 import { Backdrop } from "./ErrorHandler";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
-import { useRouter } from "next/router";
 import Cookies from "js-cookie";
-import { useState, useContext } from "react";
-import Context from "@/store/createContext";
+import { useState } from "react";
 
 const UploadProfilePhoto = (props) => {
   const [photo, setPhoto] = useState();
-  const router = useRouter();
 
   const takePhoto = (e) => {
     setPhoto(e.target.files[0]);
@@ -48,7 +45,7 @@ const UploadProfilePhoto = (props) => {
     // change photo in the footer
     Cookies.set("photo", `${newPhoto.data.photo}`, { expires: 7 });
     props.showUploadHandler();
-    router.push(`/${Cookies.get("nickName")}`);
+    window.location.reload();
   };
   return (
     <div>
