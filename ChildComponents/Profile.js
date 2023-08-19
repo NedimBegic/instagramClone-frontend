@@ -24,8 +24,7 @@ const Profile = (props) => {
   const [message, setMessage] = useState("");
   const [editProfile, setEditProfile] = useState(false);
   const [description, setDescription] = useState(props.profile.description);
-
-  console.log(props.profile);
+  const [name, setName] = useState(props.profile.name);
 
   // declare is this profile from logged user
   let isYours = Cookies.get("nickName") == props.profile.nickName;
@@ -74,6 +73,7 @@ const Profile = (props) => {
 
       {editProfile && (
         <UpdateProfile
+          updateName={setName}
           updateInfo={setDescription}
           profilePhoto={showUploadHandler}
           edit={edit}
@@ -127,7 +127,7 @@ const Profile = (props) => {
         </div>
       </div>
       <article>
-        <h5>{props.profile.name}</h5>
+        <h5>{name}</h5>
         <p>{description || "No description added"}</p>
       </article>
       <section>

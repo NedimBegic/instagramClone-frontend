@@ -32,6 +32,7 @@ const UpdateProfile = (props) => {
     );
     props.edit();
     props.updateInfo(descRef.current.value);
+    props.updateName(nameRef.current.value);
     router.push(`/${props.profile.nickName}`);
   };
 
