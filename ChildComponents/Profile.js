@@ -6,7 +6,7 @@ import {
   faUserPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import ErrorHandler from "./ErrorHandler";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import AddPost from "./AddPost";
 import { useRouter } from "next/router";
 import Context from "@/store/createContext";
@@ -17,6 +17,8 @@ import Cookies from "js-cookie";
 const Profile = (props) => {
   const { posting, togglePost } = useContext(Context);
   const router = useRouter();
+  const photo = Cookies.get("photo");
+  const [image, setImage] = useState("");
   const [showUpload, setShowUpload] = useState(false);
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
@@ -25,13 +27,16 @@ const Profile = (props) => {
   // declare is this profile from logged user
   let isYours = Cookies.get("nickName") == props.profile.nickName;
 
+  useEffect(() => {
+    setImage(photo);
+  }, [image, setImage]);
+
   // check if the user has updated his photo
   let userPhoto;
-  if (props.profile.photo == "no-photo.jpg") {
+  if (image == "no-photo.jpg") {
     userPhoto = "/avatar.jpg";
   } else {
-    userPhoto =
-      process.env.NEXT_PUBLIC_SITE + "/uploads/" + props.profile.photo;
+    userPhoto = process.env.NEXT_PUBLIC_SITE + "/uploads/" + image;
   }
   const hideError = () => {
     setError(false);
