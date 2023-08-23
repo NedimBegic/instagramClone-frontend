@@ -33,7 +33,7 @@ export async function getStaticProps(context) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_SITE}/user/${nickName}`, {
     method: "GET",
     headers: {
-      Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ODc1N2Q2MDUwYTFiYTZkOGU4NjNmMCIsImlhdCI6MTY5MjEyODcxMSwiZXhwIjoxNjk0NzIwNzExfQ.QlUKraWmEKX19tr_ug5WHIuJqsAKfjtd2XBWfkwyfCY`,
+      Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZTY2NThlN2QxYmE4NDY5ZGQ1MzI0ZSIsImlhdCI6MTY5MjgyMDg3OCwiZXhwIjoxNjk1NDEyODc4fQ.omelLFXK-6Mi4QluoKlBQfYkVdKNK0_f0fM0nbjKhmc`,
       Accept: "application/json",
       "Content-Type": "application/json",
     },
