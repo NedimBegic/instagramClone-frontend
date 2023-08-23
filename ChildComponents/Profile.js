@@ -15,6 +15,7 @@ import UploadProfilePhoto from "./UploadProfilePhoto";
 import Cookies from "js-cookie";
 
 const Profile = (props) => {
+  console.log(props.profile);
   const { posting, togglePost } = useContext(Context);
   const router = useRouter();
   const photo = Cookies.get("photo");
