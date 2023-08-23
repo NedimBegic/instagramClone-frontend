@@ -18,7 +18,7 @@ const Profile = (props) => {
   console.log(props.profile);
   const { posting, togglePost } = useContext(Context);
   const router = useRouter();
-  const photo = Cookies.get("photo");
+  const photo = props.profile.photo;
   const [image, setImage] = useState("");
   const [showUpload, setShowUpload] = useState(false);
   const [error, setError] = useState(false);
