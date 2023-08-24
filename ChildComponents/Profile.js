@@ -19,7 +19,7 @@ const Profile = (props) => {
   const { posting, togglePost } = useContext(Context);
   const router = useRouter();
   const photo = props.profile.photo;
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(props.profile.photo);
   const [showUpload, setShowUpload] = useState(false);
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
@@ -38,6 +38,9 @@ const Profile = (props) => {
   let userPhoto;
   if (image == "no-photo.jpg") {
     userPhoto = "/avatar.jpg";
+  } else if (isYours) {
+    userPhoto =
+      process.env.NEXT_PUBLIC_SITE + "/uploads/" + Cookies.get("photo");
   } else {
     userPhoto = process.env.NEXT_PUBLIC_SITE + "/uploads/" + image;
   }

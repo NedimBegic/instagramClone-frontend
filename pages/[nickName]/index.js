@@ -47,6 +47,7 @@ export async function getStaticProps(context) {
         ...data,
       },
     },
+    revalidate: 10,
   };
 }
 
