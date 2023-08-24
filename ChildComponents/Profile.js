@@ -139,6 +139,7 @@ const Profile = (props) => {
           {props.profile.post.length > 0 ? (
             props.profile.post.map((post, i) => (
               <img
+                className={styleProfile.postImg}
                 onClick={() => router.push(`/post/${post._id}`)}
                 key={i}
                 src={process.env.NEXT_PUBLIC_SITE + "/uploads/" + post.photo}

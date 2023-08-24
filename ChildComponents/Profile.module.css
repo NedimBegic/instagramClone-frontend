@@ -170,6 +170,9 @@
     justify-content: flex-start;
   }
 
+  .postImg:hover {
+    cursor: pointer;
+  }
   .inLine > *:hover,
   .dots:hover {
     cursor: pointer;

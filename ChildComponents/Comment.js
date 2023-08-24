@@ -24,6 +24,14 @@ const Comment = (props) => {
     }
   };
 
+  let photo = (userPhoto) => {
+    if (userPhoto == "no-photo.jpg") {
+      return "/avatar.jpg";
+    } else {
+      return process.env.NEXT_PUBLIC_SITE + "/uploads/" + userPhoto;
+    }
+  };
+
   const visitProfile = (author) => {
     router.push(`/${author}`);
   };
@@ -36,11 +44,7 @@ const Comment = (props) => {
                 {
                   <img
                     onClick={visitProfile.bind(null, item.author)}
-                    src={
-                      process.env.NEXT_PUBLIC_SITE +
-                      "/uploads/" +
-                      item.user[0].photo
-                    }
+                    src={photo(item.user[0].photo)}
                   />
                 }
               </div>
