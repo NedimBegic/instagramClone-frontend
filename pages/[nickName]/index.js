@@ -2,6 +2,11 @@ import Profile from "@/ChildComponents/Profile";
 import Footer from "@/components/Footer";
 import style from "./index.module.css";
 const User = (props) => {
+  if (!props.user) {
+    // Handle the case where data is not available yet
+    return <div>Loading...</div>;
+  }
+  console.log(props.user.data);
   return (
     <div className={style.allDiv}>
       <Profile profile={props.user.data} isYours={props.user.hisProfile} />
@@ -29,7 +34,7 @@ export async function getStaticProps(context) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_SITE}/user/${nickName}`, {
     method: "GET",
     headers: {
-      Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZTY2NThlN2QxYmE4NDY5ZGQ1MzI0ZSIsImlhdCI6MTY5MjgyMDg3OCwiZXhwIjoxNjk1NDEyODc4fQ.omelLFXK-6Mi4QluoKlBQfYkVdKNK0_f0fM0nbjKhmc`,
+      Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZTNiOGM5MWUzYzIyNGU2NDI1YTM3NCIsImlhdCI6MTY5MjY0NzAyNiwiZXhwIjoxNjk1MjM5MDI2fQ.I78P0LaFxbLqdlBUTZw8kqS0EjNQf-xAliLmTYjgg3k`,
       Accept: "application/json",
       "Content-Type": "application/json",
     },
