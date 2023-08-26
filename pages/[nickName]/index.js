@@ -11,9 +11,16 @@ const User = (props) => {
 };
 
 export async function getStaticPaths() {
+  let data;
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE}/user`);
+
+  data = await res.json();
+
   return {
     fallback: true,
-    paths: [], // No initial paths needed
+    paths: data.data.map((user) => ({
+      params: { nickName: user.nickName },
+    })),
   };
 }
 
