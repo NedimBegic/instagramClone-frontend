@@ -7,3 +7,10 @@
   display: flex;
   justify-content: space-evenly;
 }
+
+.loading {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: bold;
+}

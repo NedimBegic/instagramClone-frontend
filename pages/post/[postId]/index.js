@@ -8,6 +8,10 @@ import Context from "@/store/createContext";
 import AddPost from "@/ChildComponents/AddPost";
 
 const SinglePost = (props) => {
+  if (!props.post) {
+    // Handle the case where data is not available yet
+    return <div className={styleList.loading}>Loading...</div>;
+  }
   const [comments, setComments] = useState(false);
   const { posting, togglePost } = useContext(Context);
 

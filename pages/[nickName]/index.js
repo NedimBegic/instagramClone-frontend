@@ -4,7 +4,7 @@ import style from "./index.module.css";
 const User = (props) => {
   if (!props.user) {
     // Handle the case where data is not available yet
-    return <div>Loading...</div>;
+    return <div className={style.loading}>Loading...</div>;
   }
   console.log(props.user.data);
   return (
