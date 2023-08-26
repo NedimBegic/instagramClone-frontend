@@ -14,6 +14,12 @@
   z-index: 1;
 }
 
+.insta {
+  font-family: "Dancing Script", cursive !important;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
 .div img {
   width: 1em;
   height: 1em;
@@ -31,12 +37,6 @@
 .tablet {
   display: none;
   position: absolute;
-}
-
-.insta {
-  font-family: "Dancing Script", cursive !important;
-  font-size: 1.5em;
-  font-weight: bold;
 }
 
 .div > div:hover {
