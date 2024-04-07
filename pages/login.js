@@ -5,15 +5,13 @@ import Cookies from "js-cookie";
 import Context from "@/store/createContext";
 
 const Login = () => {
-  // state for error
   const [errMessage, setErrMessage] = useState("");
-  // ref for inputs
+  const [loading, setLoading] = useState(false); // State for loading indicator
   const emailRef = useRef();
   const passRef = useRef();
   const { token } = useContext(Context);
   const router = useRouter();
 
-  // redirect to homepage if token exist
   useEffect(() => {
     if (token) {
       router.push("/");
@@ -22,34 +20,45 @@ const Login = () => {
 
   const submitLogin = async (e) => {
     e.preventDefault();
+    setLoading(true); // Set loading to true when request is sent
 
     const data = {
       email: emailRef.current.value,
       password: passRef.current.value,
     };
+    try {
+      const response = await fetch(
+        process.env.NEXT_PUBLIC_SITE + "/auth/login",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
 
-    // send data
-    const response = await fetch(process.env.NEXT_PUBLIC_SITE + "/auth/login", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-    // Response data
-    const responseData = await response.json();
-    /* Check if there is an error */
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
 
-    if (responseData.message) {
-      setErrMessage(responseData.message);
-      return;
+      const responseData = await response.json();
+
+      if (responseData.message) {
+        setErrMessage(responseData.message);
+        setLoading(false); // Reset loading state
+        return;
+      }
+
+      Cookies.set("token", `${responseData.token}`, { expires: 7 });
+      Cookies.set("photo", `${responseData.user.photo}`, { expires: 7 });
+      Cookies.set("nickName", `${responseData.user.nickName}`, { expires: 7 });
+      router.push("/");
+    } catch (error) {
+      setErrMessage("Error sending data");
+      setLoading(false); // Reset loading state
     }
-
-    Cookies.set("token", `${responseData.token}`, { expires: 7 });
-    Cookies.set("photo", `${responseData.user.photo}`, { expires: 7 });
-    Cookies.set("nickName", `${responseData.user.nickName}`, { expires: 7 });
-    router.push("/");
   };
 
   const toRegisterHandler = () => {
@@ -71,15 +80,20 @@ const Login = () => {
             type="password"
             placeholder="password"
           />
-          <p>{errMessage}</p>
-          <button className={styleLogin.singup} type="submit">
+          <p>{loading ? "Sending data..." : errMessage}</p>{" "}
+          {/* Display loading message if loading */}
+          <button
+            className={styleLogin.singup}
+            type="submit"
+            disabled={loading}
+          >
             Log in
           </button>
         </form>
         <div>
-          <p>Don't have an accaunt?</p>
+          <p>Don't have an account?</p>
           <button className={styleLogin.singup} onClick={toRegisterHandler}>
-            Sing up
+            Sign up
           </button>
         </div>
       </div>
